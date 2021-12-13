@@ -1,38 +1,40 @@
 const canvas = document.getElementById('canvas1');
-// console.log(canvas)
-
 const ctx = canvas.getContext('2d');
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let size = 20;
+ctx.globalCompositeOperation = 'destination-over';
+
+
+// let size = 20;
 // let positionX = canvas.width/2;
 // let positionY = canvas.height/2;
 // let angle = 0;
 
 let number = 0;
 let scale = 10;
+let hue = Math.random();
 
 function drawFlower() {
 
  
-    let angle = number * 1;
+    let angle = number * 0.7;
     let radius = scale * Math.sqrt(number);
 
     let positionX = radius * Math.sin(angle) + canvas.width/2;
     let positionY = radius *  Math.cos(angle) + canvas.height/2;
 
-    ctx.fillStyle = 'red';
-    ctx.strokeStyle = 'blue';
+    ctx.fillStyle = 'hsl('+ hue +',100%,50%)';
+    ctx.strokeStyle = 'wheat';
     ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.arc(positionX, positionY, 20, 0, Math.PI * 2);
+    ctx.arc(positionX, positionY, number, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
 
     number++;
+    hue =+ 0.5;
 }
 
 
@@ -45,6 +47,7 @@ function animate() {
     // positionY += 5 * Math.cos(angle);
     // angle += 0.1;
     drawFlower();
+    if(number >200 ) return;
     requestAnimationFrame(animate);
 }
 
