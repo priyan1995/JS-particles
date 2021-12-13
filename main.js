@@ -14,18 +14,19 @@ ctx.globalCompositeOperation = 'destination-over';
 let number = 0;
 let scale = 10;
 let hue = Math.random();
+let hueStroak = Math.random() * 100;
 
 function drawFlower() {
 
- 
+
     let angle = number * 0.7;
     let radius = scale * Math.sqrt(number);
 
-    let positionX = radius * Math.sin(angle) + canvas.width/2;
-    let positionY = radius *  Math.cos(angle) + canvas.height/2;
+    let positionX = radius * Math.sin(angle) + canvas.width / 2;
+    let positionY = radius * Math.cos(angle) + canvas.height / 2;
 
-    ctx.fillStyle = 'hsl('+ hue +',100%,50%)';
-    ctx.strokeStyle = 'wheat';
+    ctx.fillStyle = 'hsl(' + hue + ',100%,50%)';
+    ctx.strokeStyle = 'hsl(' + hueStroak + ',100%,50%)';
     ctx.lineWidth = 5;
     ctx.beginPath();
     ctx.arc(positionX, positionY, number, 0, Math.PI * 2);
@@ -34,7 +35,7 @@ function drawFlower() {
     ctx.stroke();
 
     number++;
-    hue =+ 0.5;
+    hue += 0.5;
 }
 
 
@@ -47,7 +48,7 @@ function animate() {
     // positionY += 5 * Math.cos(angle);
     // angle += 0.1;
     drawFlower();
-    if(number >200 ) return;
+    if (number > 200) return;
     requestAnimationFrame(animate);
 }
 
